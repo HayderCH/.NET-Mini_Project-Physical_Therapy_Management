@@ -1,16 +1,16 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using GestionSeances.Models;
 
 namespace GestionSeances.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Kine> Kines { get; set; }
         public DbSet<Seance> Seances { get; set; }
-        public DbSet<Compte> Comptes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
