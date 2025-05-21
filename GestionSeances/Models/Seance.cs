@@ -8,10 +8,10 @@ public class Seance
     public int SeanceId { get; set; }
 
     [Required]
-    public int IdK { get; set; } // Foreign key vers Kine
+    public int IdK { get; set; } // Foreign key to Kine
 
     [Required]
-    public int IdP { get; set; } // Foreign key vers Patient
+    public int IdP { get; set; } // Foreign key to Patient
 
     [Required]
     public DateTime DateS { get; set; }
@@ -23,6 +23,8 @@ public class Seance
     [Required]
     [MaxLength(100)]
     public string TypeSoin { get; set; }
+
+    public string? ReservedBy { get; set; } // UserId or username of the user who reserved
 
     // Navigation properties
     public Kine Kine { get; set; }

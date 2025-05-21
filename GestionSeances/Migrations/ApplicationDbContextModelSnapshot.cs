@@ -268,7 +268,9 @@ namespace GestionSeances.Migrations
                     b.Property<DateTime>("DateS")
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeSpan>("HeureS")
+                    b.Property<string>("HeureS")
+                        .IsRequired()
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("IdK")
@@ -276,6 +278,9 @@ namespace GestionSeances.Migrations
 
                     b.Property<int>("IdP")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("ReservedBy")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("TypeSoin")
                         .IsRequired()

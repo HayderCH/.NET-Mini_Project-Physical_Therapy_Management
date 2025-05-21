@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -57,8 +56,7 @@ namespace GestionSeances.Controllers
             return View(seance);
         }
 
-        // Only admins can create, edit, or delete
-        [Authorize(Roles = "admin")]
+        // GET: Seances/Create
         public IActionResult Create()
         {
             ViewData["IdK"] = new SelectList(_context.Kines, "IdK", "NomK");
@@ -69,11 +67,11 @@ namespace GestionSeances.Controllers
         // POST: Seances/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
-        public async Task<IActionResult> Create([Bind("SeanceId,IdK,IdP,DateS,HeureS,TypeSoin")] Seance seance)
+        public async Task<IActionResult> Create([Bind("IdK,IdP,DateS,HeureS,TypeSoin")] Seance seance)
         {
             if (ModelState.IsValid)
             {
+                seance.ReservedBy = User.Identity?.Name; // Fill with current user's name, safe null usage
                 _context.Add(seance);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -83,7 +81,7 @@ namespace GestionSeances.Controllers
             return View(seance);
         }
 
-        [Authorize(Roles = "admin")]
+        // GET: Seances/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -104,7 +102,6 @@ namespace GestionSeances.Controllers
         // POST: Seances/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("SeanceId,IdK,IdP,DateS,HeureS,TypeSoin")] Seance seance)
         {
             if (id != seance.SeanceId)
@@ -116,6 +113,7 @@ namespace GestionSeances.Controllers
             {
                 try
                 {
+                    seance.ReservedBy = User.Identity?.Name; // Always set current user
                     _context.Update(seance);
                     await _context.SaveChangesAsync();
                 }
@@ -137,6 +135,7 @@ namespace GestionSeances.Controllers
             return View(seance);
         }
 
+        // Only admins can delete
         [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
