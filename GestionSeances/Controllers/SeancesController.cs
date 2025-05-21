@@ -188,5 +188,35 @@ namespace GestionSeances.Controllers
         {
             return _context.Seances.Any(e => e.SeanceId == id);
         }
+        // Add at the end of your SeancesController
+
+        public async Task<IActionResult> Statistics()
+        {
+            var totalSeances = await _context.Seances.CountAsync();
+            var totalKines = await _context.Kines.CountAsync();
+            var totalPatients = await _context.Patients.CountAsync();
+
+            // Most popular type of soin
+            var popularSoin = await _context.Seances
+                .GroupBy(s => s.TypeSoin)
+                .OrderByDescending(g => g.Count())
+                .Select(g => new { TypeSoin = g.Key, Count = g.Count() })
+                .FirstOrDefaultAsync();
+
+            // Séances per day (last 7 days)
+            var seancesPerDay = await _context.Seances
+                .Where(s => s.DateS >= DateTime.Today.AddDays(-6))
+                .GroupBy(s => s.DateS.Date)
+                .Select(g => new { Date = g.Key, Count = g.Count() })
+                .ToListAsync();
+
+            ViewBag.TotalSeances = totalSeances;
+            ViewBag.TotalKines = totalKines;
+            ViewBag.TotalPatients = totalPatients;
+            ViewBag.PopularSoin = popularSoin;
+            ViewBag.SeancesPerDay = seancesPerDay;
+
+            return View();
+        }
     }
 }

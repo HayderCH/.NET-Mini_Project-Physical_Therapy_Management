@@ -1,0 +1,33 @@
+@{
+    ViewData["Title"] = "Statistiques";
+}
+
+<h1>Statistiques de l'Application</h1>
+
+<ul>
+    <li><strong>Total Séances :</strong> @ViewBag.TotalSeances</li>
+    <li><strong>Total Kinés :</strong> @ViewBag.TotalKines</li>
+    <li><strong>Total Patients :</strong> @ViewBag.TotalPatients</li>
+    <li><strong>Type de soin le plus populaire :</strong>
+        @(ViewBag.PopularSoin != null ? $"{ViewBag.PopularSoin.TypeSoin} ({ViewBag.PopularSoin.Count})" : "Aucun")
+    </li>
+</ul>
+
+<h3>Séances par jour (7 derniers jours)</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Nombre de séances</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in ViewBag.SeancesPerDay)
+        {
+            <tr>
+                <td>@(((DateTime)entry.Date).ToString("dd/MM/yyyy"))</td>
+                <td>@entry.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
