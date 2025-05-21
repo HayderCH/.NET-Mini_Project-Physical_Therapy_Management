@@ -21,10 +21,20 @@ namespace GestionSeances.Controllers
         }
 
         // GET: Seances
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            var applicationDbContext = _context.Seances.Include(s => s.Kine).Include(s => s.Patient);
-            return View(await applicationDbContext.ToListAsync());
+            var seances = _context.Seances.Include(s => s.Kine).Include(s => s.Patient).AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                seances = seances.Where(s =>
+                    s.TypeSoin.Contains(searchString) ||
+                    s.Kine.NomK.Contains(searchString) ||
+                    s.Patient.Nomp.Contains(searchString)
+                );
+            }
+
+            return View(await seances.ToListAsync());
         }
 
         // GET: Seances/Details/5

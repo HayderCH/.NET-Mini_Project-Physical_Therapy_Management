@@ -21,9 +21,16 @@ namespace GestionSeances.Controllers
         }
 
         // GET: Patients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Patients.ToListAsync());
+            var patients = from p in _context.Patients select p;
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                patients = patients.Where(s => s.Nomp.Contains(searchString) || s.PrenomP.Contains(searchString));
+            }
+
+            return View(await patients.ToListAsync());
         }
 
         // GET: Patients/Details/5

@@ -9,6 +9,10 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<form asp-action="Index" method="get" class="mb-3">
+    <input type="text" name="searchString" value="@Context.Request.Query["searchString"]" placeholder="Search by name" class="form-control" />
+    <button type="submit" class="btn btn-primary mt-2">Search</button>
+</form>
 <table class="table">
     <thead>
         <tr>

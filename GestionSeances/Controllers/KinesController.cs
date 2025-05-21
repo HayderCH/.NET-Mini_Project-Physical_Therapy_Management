@@ -21,11 +21,17 @@ namespace GestionSeances.Controllers
         }
 
         // GET: Kines
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _context.Kines.ToListAsync());
-        }
+            var kines = from k in _context.Kines select k;
 
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                kines = kines.Where(s => s.NomK.Contains(searchString) || s.PrenomK.Contains(searchString));
+            }
+
+            return View(await kines.ToListAsync());
+        }
         // GET: Kines/Details/5
         public async Task<IActionResult> Details(int? id)
         {
