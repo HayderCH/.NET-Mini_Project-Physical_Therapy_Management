@@ -17,7 +17,8 @@ public class Seance
     public DateTime DateS { get; set; }
 
     [Required]
-    public TimeSpan HeureS { get; set; }
+    [MaxLength(50)]
+    public string HeureS { get; set; }
 
     [Required]
     [MaxLength(100)]
