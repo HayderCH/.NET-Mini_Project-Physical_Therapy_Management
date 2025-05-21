@@ -29,8 +29,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles(); // ATTENTION, c'est UseStaticFiles, pas MapStaticAssets !
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
-
+app.MapRazorPages()
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
