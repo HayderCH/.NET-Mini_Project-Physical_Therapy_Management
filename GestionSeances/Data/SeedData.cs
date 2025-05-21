@@ -1,25 +1,45 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 public static class SeedData
 {
     public static async Task Initialize(IServiceProvider serviceProvider)
     {
-        var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
+        // 1. Ensure roles exist
         string[] roles = { "admin", "user" };
         foreach (var role in roles)
+        {
             if (!await roleManager.RoleExistsAsync(role))
                 await roleManager.CreateAsync(new IdentityRole(role));
+        }
 
-        // Create admin user if it doesn't exist
+        // 2. Ensure admin user exists
         var adminEmail = "admin@admin.com";
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
         if (adminUser == null)
         {
-            adminUser = new IdentityUser { UserName = adminEmail, Email = adminEmail, EmailConfirmed = true };
-            await userManager.CreateAsync(adminUser, "easycode3000");
+            adminUser = new IdentityUser
+            {
+                UserName = adminEmail,
+                Email = adminEmail,
+                EmailConfirmed = true
+            };
+            var result = await userManager.CreateAsync(adminUser, "Admin123!");
+            if (!result.Succeeded)
+            {
+                throw new Exception("Failed to create admin user: " + string.Join(", ", result.Errors.Select(e => e.Description)));
+            }
+        }
+
+        // 3. Assign admin role
+        if (!await userManager.IsInRoleAsync(adminUser, "admin"))
+        {
             await userManager.AddToRoleAsync(adminUser, "admin");
         }
     }
