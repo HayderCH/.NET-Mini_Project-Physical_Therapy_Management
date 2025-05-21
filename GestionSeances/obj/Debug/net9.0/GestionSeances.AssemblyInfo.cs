@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GestionSeances")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f822a2fe1ad5b85a2874a941f11de7600fd562b9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8b4c2367c9d7110db700be3ad40a7c3309577ae")]
 [assembly: System.Reflection.AssemblyProductAttribute("GestionSeances")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GestionSeances")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

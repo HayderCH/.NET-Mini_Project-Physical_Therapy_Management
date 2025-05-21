@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestionSeances.Data;
 using Microsoft.AspNetCore.Authorization;
+using GestionSeances.Models;
 
 namespace GestionSeances.Controllers
 {
@@ -69,10 +70,21 @@ namespace GestionSeances.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("IdK,IdP,DateS,HeureS,TypeSoin")] Seance seance)
         {
+            if (!ModelState.IsValid)
+            {
+                foreach (var key in ModelState.Keys)
+                {
+                    foreach (var error in ModelState[key].Errors)
+                    {
+                        System.Diagnostics.Debug.WriteLine($"Error in {key}: {error.ErrorMessage}");
+                    }
+                }
+            }
             if (ModelState.IsValid)
             {
                 seance.ReservedBy = User.Identity?.Name; // Fill with current user's name, safe null usage
                 _context.Add(seance);
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
