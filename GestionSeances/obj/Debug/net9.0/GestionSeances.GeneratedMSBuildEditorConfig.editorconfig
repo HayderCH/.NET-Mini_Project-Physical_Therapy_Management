@@ -36,6 +36,26 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Kines/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2luZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Kines/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2luZXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Kines/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2luZXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Kines/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2luZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Kines/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2luZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Patients/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudHNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -54,6 +74,26 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Patients/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGF0aWVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Seances/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhbmNlc1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Seances/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhbmNlc1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Seances/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhbmNlc1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Seances/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhbmNlc1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Seances/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VhbmNlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/GIGABYTE/projects/.net-proj/GestionSeances/Views/Shared/Error.cshtml]
