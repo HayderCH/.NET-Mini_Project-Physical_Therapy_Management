@@ -1,42 +1,63 @@
-# Build results
+# Build Folders
 bin/
 obj/
-out/
 
 # User-specific files
 *.user
-*.rsuser
 *.suo
 *.userosscache
 *.sln.docstates
 
-# VS Code settings
+# IDE settings
+.vs/
 .vscode/
 
-# Dotnet publish results
-publish/
-*.db
-*.sqlite
-*.sqlite3
-# SQLite DB file but garde si tu veux versionner un exemple de base vide
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
 
-# Logs
-*.log
-
-# EF Core Migrations history
-#migrations/ # <-- NE PAS EXCLURE ce dossier si tu veux versionner tes migrations
-
-# Other files
-*.swp
-*.bak
-*.tmp
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
-# Rider/JetBrains
+# Azure
+.publish/
+*.azurePubxml
+
+# EF Core migrations build artifacts
+Migrations/
+
+# Database files
+*.db
+*.mdf
+*.ldf
+*.ndf
+
+# Logs
+*.log
+
+# Secrets/config (don't track developer secrets)
+appsettings.Development.json
+secrets.json
+
+# Rider IDE
 .idea/
 *.sln.iml
 
-# Secrets (si tu utilises dotnet user-secrets)
-secrets.json
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini

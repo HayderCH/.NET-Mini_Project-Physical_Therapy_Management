@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using GestionSeances.Models; // adapte ce namespace à ton dossier Models
+using GestionSeances.Models;
 
 namespace GestionSeances.Data
 {
@@ -16,7 +16,7 @@ namespace GestionSeances.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Relations Fluent API
+            // Relationships (Fluent API)
             modelBuilder.Entity<Seance>()
                 .HasOne(s => s.Kine)
                 .WithMany()

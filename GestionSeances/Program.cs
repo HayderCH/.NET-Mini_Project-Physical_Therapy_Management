@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-using GestionSeances.Data; // adapte ce namespace à ton dossier
+using GestionSeances.Data;
+using Microsoft.EntityFrameworkCore; // adapte ce namespace à ton dossier
 
 var builder = WebApplication.CreateBuilder(args);
 
