@@ -1,0 +1,42 @@
+# Build results
+bin/
+obj/
+out/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS Code settings
+.vscode/
+
+# Dotnet publish results
+publish/
+*.db
+*.sqlite
+*.sqlite3
+# SQLite DB file but garde si tu veux versionner un exemple de base vide
+
+# Logs
+*.log
+
+# EF Core Migrations history
+#migrations/ # <-- NE PAS EXCLURE ce dossier si tu veux versionner tes migrations
+
+# Other files
+*.swp
+*.bak
+*.tmp
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Rider/JetBrains
+.idea/
+*.sln.iml
+
+# Secrets (si tu utilises dotnet user-secrets)
+secrets.json
