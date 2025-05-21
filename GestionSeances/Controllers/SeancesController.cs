@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestionSeances.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestionSeances.Controllers
 {
+    [Authorize] // All actions require authentication (admin or user)
     public class SeancesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -45,7 +47,8 @@ namespace GestionSeances.Controllers
             return View(seance);
         }
 
-        // GET: Seances/Create
+        // Only admins can create, edit, or delete
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             ViewData["IdK"] = new SelectList(_context.Kines, "IdK", "NomK");
@@ -54,10 +57,9 @@ namespace GestionSeances.Controllers
         }
 
         // POST: Seances/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("SeanceId,IdK,IdP,DateS,HeureS,TypeSoin")] Seance seance)
         {
             if (ModelState.IsValid)
@@ -71,7 +73,7 @@ namespace GestionSeances.Controllers
             return View(seance);
         }
 
-        // GET: Seances/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -90,10 +92,9 @@ namespace GestionSeances.Controllers
         }
 
         // POST: Seances/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("SeanceId,IdK,IdP,DateS,HeureS,TypeSoin")] Seance seance)
         {
             if (id != seance.SeanceId)
@@ -126,7 +127,7 @@ namespace GestionSeances.Controllers
             return View(seance);
         }
 
-        // GET: Seances/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -149,6 +150,7 @@ namespace GestionSeances.Controllers
         // POST: Seances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var seance = await _context.Seances.FindAsync(id);

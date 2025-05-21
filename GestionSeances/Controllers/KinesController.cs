@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestionSeances.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestionSeances.Controllers
 {
+    [Authorize] // All actions require authentication (admin or user)
     public class KinesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -42,17 +44,17 @@ namespace GestionSeances.Controllers
             return View(kine);
         }
 
-        // GET: Kines/Create
+        // Only admins can create, edit, or delete
+        [Authorize(Roles = "admin")]
         public IActionResult Create()
         {
             return View();
         }
 
         // POST: Kines/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Create([Bind("IdK,NomK,PrenomK")] Kine kine)
         {
             if (ModelState.IsValid)
@@ -64,7 +66,7 @@ namespace GestionSeances.Controllers
             return View(kine);
         }
 
-        // GET: Kines/Edit/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,10 +83,9 @@ namespace GestionSeances.Controllers
         }
 
         // POST: Kines/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Edit(int id, [Bind("IdK,NomK,PrenomK")] Kine kine)
         {
             if (id != kine.IdK)
@@ -115,7 +116,7 @@ namespace GestionSeances.Controllers
             return View(kine);
         }
 
-        // GET: Kines/Delete/5
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -136,6 +137,7 @@ namespace GestionSeances.Controllers
         // POST: Kines/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var kine = await _context.Kines.FindAsync(id);
